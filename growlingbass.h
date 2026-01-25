@@ -74,7 +74,7 @@ static inline float growlingbass_step(float in)
 	// odd harmonics: hard_clip
 	float shaped_odd = hard_clip_growlingbass(filtered_in, previous_minmax);
 	// even harmonics (high pitched)
-	float shaped_even = abs(in);
+	float shaped_even = fabsf(in);
 	float sign = sgn(filtered_in);
 
 	// if we're on the rising edge of sgn(), we are starting a new period
@@ -83,9 +83,10 @@ static inline float growlingbass_step(float in)
 		previous_minmax = minmax;
 		minmax = 0;
 	}
-	//
-	if (abs(in)>minmax)
-		minmax=abs(in);
+	// Peak-hold the maximum magnitude of the current period for ceiling the
+	// odd harmonics generation in the next period.
+	if (fabsf(in)>minmax)
+		minmax=fabsf(in);
 
 	// if we're on the positive, upper half of the signal
 	if (sign > 0.0f) {
