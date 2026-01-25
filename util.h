@@ -22,7 +22,7 @@ typedef unsigned long long u64;
 #define TWO_POW_32 (4294967296.0f)
 #define LN2 0.69314718055994530942
 
-#define pow2(x) pow(2,x)
+#define pow2(x) (float)pow(2,x)
 
 // Turn 0..1 into a range
 #define linear(pot, a, b)	((a)+(pot)*((b)-(a)))

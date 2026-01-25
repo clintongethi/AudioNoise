@@ -89,7 +89,7 @@ static float tube_step(float in)
 {
 	in *= tube.boost;
 	if (in+1 > 0)
-		in = pow(in + 1, 1.5)-1;
+		in = (float)pow(in + 1, 1.5)-1;
 	else
 		in = -1;
 	in *= tube.volume;

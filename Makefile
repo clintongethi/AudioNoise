@@ -35,7 +35,7 @@ $(effects): input.raw convert
 	ffmpeg -y -v fatal -f s32le -ar 48000 -ac 1 -i output.raw -f mp3 $@.mp3
 	$(PLAY) < output.raw
 
-convert.o: CFLAGS += -ffast-math -fsingle-precision-constant # -Wdouble-promotion -Wfloat-conversion
+convert.o: CFLAGS += -ffast-math -fsingle-precision-constant -Wfloat-conversion # -Wdouble-promotion
 convert.o: $(HEADERS)
 
 convert: convert.o
